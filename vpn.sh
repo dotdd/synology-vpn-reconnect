@@ -62,9 +62,9 @@ function vpn_check_ip {
 		  sudo ipcalc -s "$real_remote_ip"
 		  if [ "$?" -eq 255 ]; then
 			if [[ "$current_remote_ip" != "$real_remote_ip" ]]; then
-				script_log_info 'Remote IP is different from the domain IP'
+				vpn_reconnect 'Remote IP is different from the domain IP'
 			else
-				vpn_reconnect "The current remote IP is indentical to the real remote IP"
+				script_log_info "The current remote IP is indentical to the real remote IP"
 			fi
 		  else
 			vpn_reconnect "The received real remote IP is invalid. Timeout?"
